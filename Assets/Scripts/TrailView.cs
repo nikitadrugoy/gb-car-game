@@ -4,27 +4,35 @@ using UnityEngine;
 
 public class TrailView : MonoBehaviour
 {
-    private RectTransform _rectTransform;
+    private Camera _camera;
     
     public void Init()
     {
-        _rectTransform = GetComponent<RectTransform>();
-
-        UpdateManager.SubscribeToUpdate(OnUpdate);
+        _camera = Camera.main;
+        
+        // Не совсем понимаю зачем нужен UpdateManager. Но для целостности тут тоже его использую.
+        UpdateManager.SubscribeToUpdate(UpdatePosition);
     }
 
-    private void OnUpdate()
+    private void UpdatePosition()
     {
+        Vector3 position = Input.mousePosition;
+        
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
 
-            _rectTransform.anchoredPosition = touch.position;
+            position = touch.position;
         }
-        
-        // Trail почему-то смещается. никак не могу понять что нужно учесть в расчете позиции.
-        // Может быть влияют параметры разметки родительского трансформа?
 
-        // _rectTransform.anchoredPosition = Input.mousePosition;
+        position = _camera.ScreenToWorldPoint(position);
+        position.z = 0;
+
+        transform.position = position;
+    }
+
+    private void OnDestroy()
+    {
+        UpdateManager.UnsubscribeFromUpdate(UpdatePosition);
     }
 }

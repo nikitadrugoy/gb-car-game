@@ -10,6 +10,7 @@ public class MainMenuController : BaseController
     public MainMenuController(Transform placeForUi, ProfilePlayer profilePlayer)
     {
         _profilePlayer = profilePlayer;
+        
         _view = LoadView(placeForUi);
         _view.Init(StartGame);
     }
