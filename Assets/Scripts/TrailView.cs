@@ -10,25 +10,20 @@ public class TrailView : MonoBehaviour
     {
         _camera = Camera.main;
         
-        // Не совсем понимаю зачем нужен UpdateManager. Но для целостности тут тоже его использую.
         UpdateManager.SubscribeToUpdate(UpdatePosition);
     }
 
     private void UpdatePosition()
     {
-        Vector3 position = Input.mousePosition;
-        
-        if (Input.touchCount > 0)
+        foreach (Touch touch in Input.touches)
         {
-            Touch touch = Input.GetTouch(0);
+            Vector3 position = touch.position;
+        
+            position = _camera.ScreenToWorldPoint(position);
+            position.z = 0;
 
-            position = touch.position;
+            transform.position = position;
         }
-
-        position = _camera.ScreenToWorldPoint(position);
-        position.z = 0;
-
-        transform.position = position;
     }
 
     private void OnDestroy()

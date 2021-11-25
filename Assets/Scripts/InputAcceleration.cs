@@ -24,7 +24,7 @@ public class InputAcceleration : BaseInputView
         if (direction.sqrMagnitude > 1)
             direction.Normalize();
         
-        OnRightMove(direction.sqrMagnitude / 20 * _speed);
+        OnRightMove(direction.sqrMagnitude / 20 * Speed);
     }
 }
 

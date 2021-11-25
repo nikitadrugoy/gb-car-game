@@ -43,21 +43,21 @@ public class TouchInputView : BaseInputView
 
     private void AddAcceleration(float acc)
     {
-        _speed = Mathf.Clamp(_speed + acc, -1f, 1f);
+        Speed = Mathf.Clamp(Speed + acc, -1f, 1f);
     }
 
     private void Move()
     {
-        if(_speed < 0)
-            OnLeftMove(_speed);
+        if(Speed < 0)
+            OnLeftMove(Speed);
         else
-            OnRightMove(_speed);
+            OnRightMove(Speed);
     }
 
     private void Slowdown()
     {
-        var sgn = Mathf.Sign(_speed);
-        _speed = Mathf.Clamp01(Mathf.Abs(_speed) - _slowUpPerSecond*Time.deltaTime) * sgn;
+        var sgn = Mathf.Sign(Speed);
+        Speed = Mathf.Clamp01(Mathf.Abs(Speed) - _slowUpPerSecond*Time.deltaTime) * sgn;
     }
 
     void OnDestroy()
