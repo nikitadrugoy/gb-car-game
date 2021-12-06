@@ -169,6 +169,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _buttonStart: {fileID: 315532611085353152}
+  _trailView: {fileID: 5734205463271524610, guid: 6ca5f5432e7894c8289ac30ed8ef626e,
+    type: 3}
 --- !u!1 &6888920513732523659
 GameObject:
   m_ObjectHideFlags: 0

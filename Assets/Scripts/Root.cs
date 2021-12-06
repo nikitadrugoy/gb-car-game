@@ -10,7 +10,7 @@ public class Root : MonoBehaviour
 
     private void Awake()
     {
-        var profilePlayer = new ProfilePlayer(15f);
+        var profilePlayer = new ProfilePlayer(0f);
         profilePlayer.CurrentState.Value = GameState.Start;
         _mainController = new MainController(_placeForUi, profilePlayer);
     }
